@@ -1,0 +1,32 @@
+apiVersion: logging.kubesphere.io/v1alpha2
+kind: Input
+metadata:
+  name: dummy
+  namespace: kubesphere-logging-system
+  labels:
+    logging.kubesphere.io/enabled: "true"
+    app.kubernetes.io/version: v0.2.0
+spec:
+  tail: 
+    bufferChunkSize: 1M
+    bufferMaxSize: 1M
+    memBufLimit: 5MB
+    parser: docker
+    path: /var/log/containers/*.log
+    tag: kube.*
+  # tail:
+	# Buffer_Chunk_Size 1M
+	# Buffer_Max_Size 1M
+	# Mem_Buf_Limit 5MB
+	# Name tail
+	# Parser syslog-kubelet
+	# Path /var/log/messages
+	# Tag syslog.*
+  # tail:
+	# Buffer_Chunk_Size 1M
+	# Buffer_Max_Size 1M
+	# Mem_Buf_Limit 5MB
+	# Name tail
+	# Parser syslog-kubelet
+	# Path /var/log/syslog
+	# Tag syslog.*
