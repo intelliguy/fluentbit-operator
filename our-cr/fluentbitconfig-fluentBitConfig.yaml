@@ -5,7 +5,7 @@ metadata:
   namespace: kubesphere-logging-system
   labels:
     app.kubernetes.io/name: fluent-bit
-    app.kubernetes.io/version: v1.4.3
+    app.kubernetes.io/version: v1.3.7
 spec:
   service:
     parsersFile: parsers.conf
