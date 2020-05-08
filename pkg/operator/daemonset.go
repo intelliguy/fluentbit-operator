@@ -87,11 +87,27 @@ func MakeDaemonSet(fb v1alpha2.FluentBit, logPath string) appsv1.DaemonSet {
 								},
 							},
 						},
+						// {
+						// 	Name: "parser",
+						// 	VolumeSource: corev1.VolumeSource{
+						// 		Secret: &corev1.SecretVolumeSource{
+						// 			SecretName: "fluentbit_parser",
+						// 		},
+						// 	},
+						// },
 						{
 							Name: "varlogs",
 							VolumeSource: corev1.VolumeSource{
 								HostPath: &corev1.HostPathVolumeSource{
 									Path: "/var/log",
+								},
+							},
+						},
+						{
+							Name: "host-bin",
+							VolumeSource: corev1.VolumeSource{
+								HostPath: &corev1.HostPathVolumeSource{
+									Path: "/bin",
 								},
 							},
 						},
@@ -123,6 +139,11 @@ func MakeDaemonSet(fb v1alpha2.FluentBit, logPath string) appsv1.DaemonSet {
 									Name:      "varlogs",
 									ReadOnly:  true,
 									MountPath: "/var/log/",
+								},
+								{
+									Name:      "host-bin",
+									ReadOnly:  true,
+									MountPath: "/bin/",
 								},
 							},
 						},
@@ -164,3 +185,30 @@ func MakeDaemonSet(fb v1alpha2.FluentBit, logPath string) appsv1.DaemonSet {
 
 	return ds
 }
+
+// func MakeParser(fb v1alpha2.FluentBit, logPath string) *corev1.ConfigMap {
+// 	// ls := labelsForFluentbit(cr.Name)
+// 	cm := &corev1.ConfigMap{
+// 		ObjectMeta: metav1.ObjectMeta{
+// 			Name:      cr.Name+"-cm",
+// 			Namespace: cr.Namespace,
+// 		},
+// 		Data: map[string]string{ "parsers.conf":`[PARSER]
+// 	Decode_Field_As escaped_utf8 log
+// 	Format json
+// 	Name docker
+// 	Time_Format %Y-%m-%dT%H:%M:%S.%L
+// 	Time_Keep true
+// 	Time_Key time
+// [PARSER]
+// 	NAME syslog-kubelet
+// 	Format regex
+// 	Regex '^(?<time>.*[0-9]{2}:[0-9]{2}:[0-9]{2}) (?<host>[^ ]*) (?<app>[a-zA-Z0-9_\/\.\-]*)(?:\[(?<pid>[0-9]+)\])?(?:[^\:]*\:)? (?<log>.+)$'
+// 	Time_Key time
+// 	Time_Format '%b %e %H:%M:%S'
+// 	Time_Keep On
+// 	Decode_Field_As escaped_utf8 log `},
+// 	}
+// 	controllerutil.SetControllerReference(cr, cm, r.scheme)
+// 	return cm
+// }
