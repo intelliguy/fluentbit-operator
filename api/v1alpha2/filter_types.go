@@ -46,6 +46,9 @@ type FilterItem struct {
 	Modify *filter.Modify `json:"modify,omitempty"`
 	// Nest defines Nest Filter configuration.
 	Nest *filter.Nest `json:"nest,omitempty"`
+	// The rewrite_tag filter, allows to re-emit a record under a new Tag. 
+	// Once a record has been re-emitted, the original record can be preserved or discarded.
+	RewriteTag *filter.RewriteTag `json:"nest,omitempty"`
 }
 
 // +kubebuilder:object:root=true
