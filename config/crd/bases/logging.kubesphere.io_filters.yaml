@@ -313,10 +313,7 @@ spec:
                               description: If a rule matches the criteria the filter
                                 will emit a copy of the record with the new defined
                                 Tag.
-                              enum:
-                              - true
-                              - false
-                              type: string
+                              type: boolean
                             key:
                               description: The key represents the name of the record
                                 key that holds the value that we want to use to match
@@ -335,8 +332,6 @@ spec:
                               type: string
                           type: object
                         type: array
-                    required:
-                    - emitterStorageType
                     type: object
                 type: object
               type: array

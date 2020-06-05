@@ -15,7 +15,7 @@ type RewriteTag struct {
 	// Define a buffering mechanism for the new records created. Note these records are part of the emitter plugin.
 	// This option support the values memory (default) or filesystem.
 	// +kubebuilder:validation:Enum:=memory;filesystem
-	EmitterStorageType string `json:"emitterStorageType,optional"`
+	EmitterStorageType string `json:"emitterStorageType,omitempty"`
 }
 
 // +kubebuilder:object:generate:=true
@@ -29,8 +29,7 @@ type RewriteTagRule struct {
 	// If a regular expression has matched the value of the defined key in the rule, we are ready to compose a new Tag for that specific record.
 	NewTag string `json:"newTag,omitempty"`
 	// If a rule matches the criteria the filter will emit a copy of the record with the new defined Tag.
-	// +kubebuilder:validation:Enum:=true;false
-	Keep string `json:"keep,omitempty"`
+	Keep bool `json:"keep,omitempty"`
 }
 
 func (_ *RewriteTag) Name() string {
@@ -40,7 +39,7 @@ func (_ *RewriteTag) Name() string {
 func (n *RewriteTag) Params(_ plugins.SecretLoader) (*plugins.KVs, error) {
 	kvs := plugins.NewKVs()
 	for _, rule := range n.Rules {
-		kvs.Insert("Rules", rule.Key+" "+rule.Regex+" "+rule.NewTag+" "+rule.Keep)
+		kvs.Insert("Rules", rule.Key+" "+rule.Regex+" "+rule.NewTag+" "+FormatBool(rule.Keep))
 	}
 	if n.EmitterName != "" {
 		kvs.Insert("Emitter_Name", n.EmitterName)
@@ -49,4 +48,11 @@ func (n *RewriteTag) Params(_ plugins.SecretLoader) (*plugins.KVs, error) {
 		kvs.Insert("Emitter_Storage.type", n.EmitterStorageType)
 	}
 	return kvs, nil
+}
+
+func FormatBool(b bool) string {
+	if b {
+		return "true"
+	}
+	return "false"
 }
