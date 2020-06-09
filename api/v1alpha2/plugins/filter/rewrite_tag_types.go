@@ -39,7 +39,7 @@ func (_ *RewriteTag) Name() string {
 func (n *RewriteTag) Params(_ plugins.SecretLoader) (*plugins.KVs, error) {
 	kvs := plugins.NewKVs()
 	for _, rule := range n.Rules {
-		kvs.Insert("Rules", rule.Key+" "+rule.Regex+" "+rule.NewTag+" "+FormatBool(rule.Keep))
+		kvs.Insert("Rule", rule.Key+" "+rule.Regex+" "+rule.NewTag+" "+FormatBool(rule.Keep))
 	}
 	if n.EmitterName != "" {
 		kvs.Insert("Emitter_Name", n.EmitterName)
