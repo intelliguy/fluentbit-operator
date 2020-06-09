@@ -479,6 +479,11 @@ func (in *OutputSpec) DeepCopyInto(out *OutputSpec) {
 		*out = new(output.Forward)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.Http != nil {
+		in, out := &in.Http, &out.Http
+		*out = new(output.Http)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Kafka != nil {
 		in, out := &in.Kafka, &out.Kafka
 		*out = new(output.Kafka)
