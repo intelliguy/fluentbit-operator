@@ -12,7 +12,7 @@ import (
 func MakeRBACObjects(fbName, fbNamespace string) (rbacv1.ClusterRole, corev1.ServiceAccount, rbacv1.ClusterRoleBinding) {
 	cr := rbacv1.ClusterRole{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: "kubesphere:fluent-bit",
+			Name: "fluent-bit",
 		},
 		Rules: []rbacv1.PolicyRule{
 			{
@@ -32,7 +32,7 @@ func MakeRBACObjects(fbName, fbNamespace string) (rbacv1.ClusterRole, corev1.Ser
 
 	crb := rbacv1.ClusterRoleBinding{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: "kubesphere:fluent-bit",
+			Name: "fluent-bit",
 		},
 		Subjects: []rbacv1.Subject{
 			{
@@ -44,7 +44,7 @@ func MakeRBACObjects(fbName, fbNamespace string) (rbacv1.ClusterRole, corev1.Ser
 		RoleRef: rbacv1.RoleRef{
 			APIGroup: rbacv1.GroupName,
 			Kind:     "ClusterRole",
-			Name:     "kubesphere:fluent-bit",
+			Name:     "fluent-bit",
 		},
 	}
 
