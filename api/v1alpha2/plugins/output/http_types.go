@@ -1,8 +1,8 @@
 package output
 
 import (
-	"fmt"
 	"kubesphere.io/fluentbit-operator/api/v1alpha2/plugins"
+	"strconv"
 )
 
 // +kubebuilder:object:generate:=true
@@ -43,7 +43,7 @@ func (f *Http) Params(sl plugins.SecretLoader) (*plugins.KVs, error) {
 		kvs.Insert("HTTP_Passwd", f.HttpPasswd)
 	}
 	if f.Port != nil {
-		kvs.Insert("Port", fmt.Sprint(f.Port))
+		kvs.Insert("Port", strconv.FormatInt(int64(*(f.Port)), 10))
 	}
 	if f.URI != "" {
 		kvs.Insert("URI", f.URI)
