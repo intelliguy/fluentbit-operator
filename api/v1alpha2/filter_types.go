@@ -52,6 +52,9 @@ type FilterItem struct {
 	Nest *filter.Nest `json:"nest,omitempty"`
 	// Parser defines Parser Filter configuration.
 	Parser *filter.Parser `json:"parser,omitempty"`
+	// The rewrite_tag filter, allows to re-emit a record under a new Tag.
+	// Once a record has been re-emitted, the original record can be preserved or discarded.
+	RewriteTag *filter.RewriteTag `json:"rewriteTag,omitempty"`
 }
 
 // +kubebuilder:object:root=true

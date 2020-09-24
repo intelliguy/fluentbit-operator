@@ -39,6 +39,8 @@ type OutputSpec struct {
 	Elasticsearch *output.Elasticsearch `json:"es,omitempty"`
 	// Forward defines Forward Output configuration.
 	Forward *output.Forward `json:"forward,omitempty"`
+	// Forward defines Http Output configuration.
+	Http *output.Http `json:"http,omitempty"`
 	// Kafka defines Kafka Output configuration.
 	Kafka *output.Kafka `json:"kafka,omitempty"`
 	// Null defines Null Output configuration.
