@@ -37,9 +37,12 @@ Filter defines a Filter configuration.
 
 | Field | Description | Scheme |
 | ----- | ----------- | ------ |
+| grep | Grep defines Grep Filter configuration. | *[filter.Grep](plugins/filter/grep.md) |
+| recordModifier | RecordModifier defines Record Modifier Filter configuration. | *[filter.RecordModifier](plugins/filter/recordmodifier.md) |
 | kubernetes | Kubernetes defines Kubernetes Filter configuration. | *[filter.Kubernetes](plugins/filter/kubernetes.md) |
 | modify | Modify defines Modify Filter configuration. | *[filter.Modify](plugins/filter/modify.md) |
 | nest | Nest defines Nest Filter configuration. | *[filter.Nest](plugins/filter/nest.md) |
+| parser | Parser defines Parser Filter configuration. | *[filter.Parser](plugins/filter/parser.md) |
 
 [Back to TOC](#table-of-contents)
 ## FilterList
@@ -134,6 +137,7 @@ FluentBitSpec defines the desired state of FluentBit
 | imagePullPolicy | Fluent Bit image pull policy. | corev1.PullPolicy |
 | positionDB | Storage for position db. You will use it if tail input is enabled. | [corev1.VolumeSource](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#volume-v1-core) |
 | containerLogRealPath | Container log path | string |
+| nodeSelector | NodeSelector | map[string]string |
 | tolerations | Tolerations | [][corev1.Toleration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#toleration-v1-core) |
 | fluentBitConfigName | Fluentbitconfig object associated with this Fluentbit | string |
 | secrets | The Secrets are mounted into /fluent-bit/secrets/<secret-name>. | []string |

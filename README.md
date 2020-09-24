@@ -104,7 +104,7 @@ Success!
 
 ## API Doc
 
-The listing below shows supported plugins currently. It is based on Fluent Bit v1.3.7. For more information, see API docs of each plugin.
+The listing below shows supported plugins currently. It is based on Fluent Bit v1.4.6. For more information, see API docs of each plugin.
 
 - [Input](docs/crd.md#input)
     - [dummy](docs/plugins/input/dummy.md)
@@ -113,6 +113,9 @@ The listing below shows supported plugins currently. It is based on Fluent Bit v
     - [kubernetes](docs/plugins/filter/kubernetes.md)
     - [modify](docs/plugins/filter/modify.md)
     - [nest](docs/plugins/filter/nest.md) 
+    - [parser](docs/plugins/filter/parser.md)
+    - [grep](docs/plugins/filter/grep.md)
+    - [record modifier](docs/plugins/filter/recordmodifier.md)
 - [Output](docs/crd.md#output)
     - [elasticsearch](docs/plugins/output/elasticsearch.md)
     - [forward](docs/plugins/output/forward.md)
@@ -142,7 +145,7 @@ Path to file in Fluent Bit config should be well regulated. Fluent Bit Operator 
 
 ## Features In Plan
 
-- [ ] Support parser plugins
+- [ ] Support custom parser plugins
 - [ ] Support custom Input/Filter/Output plugins
 - [ ] Deploy Fluent Bit as deployment
 - [ ] Integrate logging sidecar

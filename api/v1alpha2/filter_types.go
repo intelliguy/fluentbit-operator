@@ -40,12 +40,18 @@ type FilterSpec struct {
 }
 
 type FilterItem struct {
+	// Grep defines Grep Filter configuration.
+	Grep *filter.Grep `json:"grep,omitempty"`
+	// RecordModifier defines Record Modifier Filter configuration.
+	RecordModifier *filter.RecordModifier `json:"recordModifier,omitempty"`
 	// Kubernetes defines Kubernetes Filter configuration.
 	Kubernetes *filter.Kubernetes `json:"kubernetes,omitempty"`
 	// Modify defines Modify Filter configuration.
 	Modify *filter.Modify `json:"modify,omitempty"`
 	// Nest defines Nest Filter configuration.
 	Nest *filter.Nest `json:"nest,omitempty"`
+	// Parser defines Parser Filter configuration.
+	Parser *filter.Parser `json:"parser,omitempty"`
 }
 
 // +kubebuilder:object:root=true
