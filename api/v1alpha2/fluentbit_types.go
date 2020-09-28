@@ -1,5 +1,4 @@
 /*
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -42,6 +41,15 @@ type FluentBitSpec struct {
 	FluentBitConfigName string `json:"fluentBitConfigName,omitempty"`
 	// The Secrets are mounted into /fluent-bit/secrets/<secret-name>.
 	Secrets []string `json:"secrets,omitempty"`
+	// Compute Resources required by this container.
+	// Cannot be updated.
+	// More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+	// +optional
+	Resources corev1.ResourceRequirements `json:"resources,omitempty" protobuf:"bytes,8,opt,name=resources"`
+	// CPU Resources required by this container.
+	CPU string `json:"cpu,omitempty"`
+	// Memory Resources required by this container.
+	Memory string `json:"memory,omitempty"`
 }
 
 // FluentBitStatus defines the observed state of FluentBit
