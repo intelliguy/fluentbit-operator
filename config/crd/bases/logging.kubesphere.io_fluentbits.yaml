@@ -37,9 +37,6 @@ spec:
             containerLogRealPath:
               description: Container log path
               type: string
-            cpu:
-              description: CPU Resources required by this container.
-              type: string
             fluentBitConfigName:
               description: Fluentbitconfig object associated with this Fluentbit
               type: string
@@ -48,9 +45,6 @@ spec:
               type: string
             imagePullPolicy:
               description: Fluent Bit image pull policy.
-              type: string
-            memory:
-              description: Memory Resources required by this container.
               type: string
             nodeSelector:
               additionalProperties:

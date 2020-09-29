@@ -46,10 +46,6 @@ type FluentBitSpec struct {
 	// More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
 	// +optional
 	Resources corev1.ResourceRequirements `json:"resources,omitempty" protobuf:"bytes,8,opt,name=resources"`
-	// CPU Resources required by this container.
-	CPU string `json:"cpu,omitempty"`
-	// Memory Resources required by this container.
-	Memory string `json:"memory,omitempty"`
 }
 
 // FluentBitStatus defines the observed state of FluentBit

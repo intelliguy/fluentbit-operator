@@ -5,7 +5,7 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	rbacv1 "k8s.io/api/rbac/v1"
-	"k8s.io/apimachinery/pkg/api/resource"
+	// "k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"kubesphere.io/fluentbit-operator/api/v1alpha2"
 )
@@ -147,6 +147,7 @@ func MakeDaemonSet(fb v1alpha2.FluentBit, logPath string) appsv1.DaemonSet {
 									MountPath: "/bin/",
 								},
 							},
+							Resources: fb.Spec.Resources,
 						},
 					},
 					NodeSelector: fb.Spec.NodeSelector,
@@ -187,22 +188,22 @@ func MakeDaemonSet(fb v1alpha2.FluentBit, logPath string) appsv1.DaemonSet {
 
 	fmt.Println(fb.Spec)
 
-	resources := corev1.ResourceRequirements{
-		Limits:   corev1.ResourceList{},
-		Requests: corev1.ResourceList{},
-	}
-	if fb.Spec.CPU != "" {
-		resources.Limits[corev1.ResourceCPU] = resource.MustParse(fb.Spec.CPU)
-		resources.Requests[corev1.ResourceCPU] = resource.MustParse(fb.Spec.CPU)
-	}
-	if fb.Spec.Memory != "" {
-		resources.Limits[corev1.ResourceMemory] = resource.MustParse(fb.Spec.Memory)
-		resources.Requests[corev1.ResourceMemory] = resource.MustParse(fb.Spec.Memory)
-	}
+	// resources := corev1.ResourceRequirements{
+	// 	Limits:   corev1.ResourceList{},
+	// 	Requests: corev1.ResourceList{},
+	// }
+	// if fb.Spec.CPU != "" {
+	// 	resources.Limits[corev1.ResourceCPU] = resource.MustParse(fb.Spec.CPU)
+	// 	resources.Requests[corev1.ResourceCPU] = resource.MustParse(fb.Spec.CPU)
+	// }
+	// if fb.Spec.Memory != "" {
+	// 	resources.Limits[corev1.ResourceMemory] = resource.MustParse(fb.Spec.Memory)
+	// 	resources.Requests[corev1.ResourceMemory] = resource.MustParse(fb.Spec.Memory)
+	// }
 
-	if fb.Spec.CPU != "" || fb.Spec.Memory != "" {
-		fb.Spec.Resources.DeepCopyInto(ds.Spec.Template.Spec.Containers[0].Resources)
-	}
+	// if fb.Spec.CPU != "" || fb.Spec.Memory != "" {
+	// 	fb.Spec.Resources.DeepCopyInto(ds.Spec.Template.Spec.Containers[0].Resources)
+	// }
 
 	return ds
 }
